@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "147776215430",
+    "project_id": "stardom-318e3",
+    "storage_bucket": "stardom-318e3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:147776215430:android:ab6d8795a67b4e5e767407",
+        "android_client_info": {
+          "package_name": "com.example.stardom"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "147776215430-s3ipgair0rppengg0vofkm2tuvjtdiee.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiojhA3g-SxdZaxDEt7GCaR9XQ9FfMpcY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "147776215430-s3ipgair0rppengg0vofkm2tuvjtdiee.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
