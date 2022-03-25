@@ -1,6 +1,6 @@
-import 'package:cameo/pages/user/auth/login.dart';
 import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
+import 'package:stardom/pages/user/auth/login.dart';
 
 class Splash extends StatefulWidget {
   const Splash({Key? key}) : super(key: key);

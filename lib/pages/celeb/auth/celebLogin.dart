@@ -1,9 +1,8 @@
-import 'package:cameo/pages/celeb/auth/celebSignup.dart';
-import 'package:cameo/pages/celeb/home/celebHomePage/celebHomePage.dart';
-import 'package:cameo/pages/user/auth/signup.dart';
-import 'package:cameo/pages/user/home/userHomePage/user_home.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:stardom/pages/celeb/auth/celebSignup.dart';
+import 'package:stardom/pages/celeb/home/celebHomePage/celebHomePage.dart';
 
 
 

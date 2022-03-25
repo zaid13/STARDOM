@@ -1,10 +1,10 @@
-import 'package:cameo/pages/user/home/frontPage/components/celebrityCard.dart';
-import 'package:cameo/pages/user/home/frontPage/frontPage.dart';
-import 'package:cameo/pages/user/home/notificationsPage/notificationsPage.dart';
-import 'package:cameo/pages/user/home/profilePage/profilePage.dart';
-import 'package:cameo/pages/user/home/requestsPage/requestsPage.dart';
-import 'package:cameo/util/colorScheme.dart';
-import 'package:cameo/util/textStyles.dart';
+import 'package:stardom/pages/user/home/frontPage/components/celebrityCard.dart';
+import 'package:stardom/pages/user/home/frontPage/frontPage.dart';
+import 'package:stardom/pages/user/home/notificationsPage/notificationsPage.dart';
+import 'package:stardom/pages/user/home/profilePage/profilePage.dart';
+import 'package:stardom/pages/user/home/requestsPage/requestsPage.dart';
+import 'package:stardom/util/colorScheme.dart';
+import 'package:stardom/util/textStyles.dart';
 import "package:flutter/material.dart";
 
 

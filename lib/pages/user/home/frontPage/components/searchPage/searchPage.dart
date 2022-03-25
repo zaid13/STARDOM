@@ -1,6 +1,6 @@
-import 'package:cameo/pages/user/home/frontPage/components/celebrityCard.dart';
-import 'package:cameo/pages/user/home/frontPage/components/searchPage/components/searchPageRow.dart';
-import 'package:cameo/util/colorScheme.dart';
+import 'package:stardom/pages/user/home/frontPage/components/celebrityCard.dart';
+import 'package:stardom/pages/user/home/frontPage/components/searchPage/components/searchPageRow.dart';
+import 'package:stardom/util/colorScheme.dart';
 import "package:flutter/material.dart";
 
 var testingData=[

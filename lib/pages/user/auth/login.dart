@@ -1,9 +1,10 @@
 
-import 'package:cameo/pages/celeb/auth/celebLogin.dart';
-import 'package:cameo/pages/user/auth/signup.dart';
-import 'package:cameo/pages/user/home/userHomePage/user_home.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:stardom/pages/celeb/auth/celebLogin.dart';
+import 'package:stardom/pages/user/auth/signup.dart';
+import 'package:stardom/pages/user/home/userHomePage/user_home.dart';
 
 
 class userLogin extends StatefulWidget {

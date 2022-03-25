@@ -1,9 +1,10 @@
-import 'package:cameo/pages/user/home/frontPage/components/celebrityProfilePage/celebrityProfilePage.dart';
-import 'package:cameo/pages/user/home/videoRequestPage/videoRequestDetails.dart';
-import 'package:cameo/util/colorScheme.dart';
-import 'package:cameo/util/textStyles.dart';
+
 import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
+import 'package:stardom/pages/user/home/frontPage/components/celebrityProfilePage/celebrityProfilePage.dart';
+import 'package:stardom/pages/user/home/videoRequestPage/videoRequestDetails.dart';
+import 'package:stardom/util/colorScheme.dart';
+import 'package:stardom/util/textStyles.dart';
 
 
 

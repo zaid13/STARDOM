@@ -1,9 +1,10 @@
-import 'package:cameo/pages/user/home/frontPage/components/celebrityCard.dart';
-import 'package:cameo/pages/user/home/frontPage/components/searchPage/searchPage.dart';
-import 'package:cameo/util/colorScheme.dart';
-import 'package:cameo/util/textStyles.dart';
+
 import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
+import 'package:stardom/pages/user/home/frontPage/components/celebrityCard.dart';
+import 'package:stardom/pages/user/home/frontPage/components/searchPage/searchPage.dart';
+import 'package:stardom/util/colorScheme.dart';
+import 'package:stardom/util/textStyles.dart';
 
 var selectedCategory=0;
 var categories=[
