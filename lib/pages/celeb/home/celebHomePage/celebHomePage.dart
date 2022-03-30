@@ -1,6 +1,8 @@
 
 import "package:flutter/material.dart";
+import 'package:stardom/pages/celeb/home/celebProfilePage/celebrityProfile.dart';
 import 'package:stardom/pages/celeb/home/celebRequests/celebRequests.dart';
+import 'package:stardom/pages/celeb/home/celebRequests/celebVideoRequestDetails.dart';
 import 'package:stardom/pages/user/home/notificationsPage/notificationsPage.dart';
 import 'package:stardom/pages/user/home/profilePage/profilePage.dart';
 import 'package:stardom/util/colorScheme.dart';
@@ -9,7 +11,7 @@ import 'package:stardom/util/colorScheme.dart';
 var pages=[
   celebRequests(),
   notificationsPage(),
-  profilePage()
+  celebVideoRequestDetails()
 ];
 
 var currentPage=0;

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:stardom/pages/celeb/home/celebRequests/cameraScreen.dart';
 import 'package:stardom/pages/user/auth/splash_screen.dart';
 
 void main() async {
@@ -19,6 +20,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Splash() ,
+      // home:cameraScreen()
     );
   }
 }
