@@ -9,10 +9,13 @@ part 'UserModel.g.dart';
 
 class UserModel{
   UserModel({
-    required this.picture_url,
-    required this.phone_number,
-    required this.email_address,
-    required this.password,
+      required this.uid,
+      required this.picture_url,
+      required this.phone_number,
+      required this.email_address,
+      required this.password,
+      required this.user_name
+
 
   });
 
@@ -20,6 +23,8 @@ class UserModel{
   String phone_number;
   String email_address;
   String password;
+  String uid;
+  String user_name;
 
   factory UserModel.fromJson(Map<String, dynamic> json) => _$UserModelFromJson(json);
   Map<String, dynamic> toJson() => _$UserModelToJson(this);

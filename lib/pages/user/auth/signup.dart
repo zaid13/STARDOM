@@ -4,6 +4,9 @@ import 'package:stardom/pages/celeb/auth/celebLogin.dart';
 import 'package:stardom/pages/user/auth/login.dart';
 import 'package:stardom/pages/user/home/userHomePage/user_home.dart';
 
+import '../../../providers/AuthProvider.dart';
+import '../../../util/snackBar.dart';
+
 
 var fullName=TextEditingController(text: "");
 var email=TextEditingController(text: "");
@@ -17,6 +20,9 @@ class userSignup extends StatefulWidget {
 }
 
 class _userSignupState extends State<userSignup> {
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
+
+
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
@@ -24,6 +30,7 @@ class _userSignupState extends State<userSignup> {
 
     return SafeArea(
       child: Scaffold(
+        key: _scaffoldKey,
         body: SingleChildScrollView(
           child: Container(
             decoration: BoxDecoration(
@@ -139,8 +146,11 @@ class _userSignupState extends State<userSignup> {
                       child: TextField(
                         controller: phone,
                         style: TextStyle(fontSize: 15, color: Colors.black.withOpacity(0.8),fontWeight: FontWeight.w400,fontFamily: "Ubuntu"),
+
+
                         decoration: InputDecoration(
-                          hintText: "Phone",
+                          hintText: "Phone (+92 3xx-xxx-xxxx)",
+
                           contentPadding: EdgeInsets.all(15),
                           filled: true,
                           focusColor: Colors.red,
@@ -182,12 +192,17 @@ class _userSignupState extends State<userSignup> {
                       child: Center(
                         child: ElevatedButton(
                             onPressed: (){
-                              Navigator.pushReplacement(
-                                  context,
-                                  CupertinoPageRoute(builder: (context){
-                                    return userHome();
-                                  })
-                              );
+                              // Navigator.pushReplacement(
+                              //     context,
+                              //     CupertinoPageRoute(builder: (context){
+                              //       return userHome();
+                              //     })
+                              // );
+                              AuthProvider().loginUser("+923174149260", context, (log){showSnackbar(log,_scaffoldKey);
+                              });
+
+
+
                             },
                             style: ElevatedButton.styleFrom(
                               elevation: 10,
