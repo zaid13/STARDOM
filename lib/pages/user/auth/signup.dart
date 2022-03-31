@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:stardom/pages/celeb/auth/celebLogin.dart';
 import 'package:stardom/pages/user/auth/login.dart';
+import 'package:stardom/pages/user/auth/otpScreen.dart';
 import 'package:stardom/pages/user/home/userHomePage/user_home.dart';
 
 
@@ -185,7 +186,7 @@ class _userSignupState extends State<userSignup> {
                               Navigator.pushReplacement(
                                   context,
                                   CupertinoPageRoute(builder: (context){
-                                    return userHome();
+                                    return otpScreen();
                                   })
                               );
                             },
