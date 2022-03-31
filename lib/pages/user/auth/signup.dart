@@ -1,10 +1,14 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:stardom/pages/celeb/auth/celebLogin.dart';
 import 'package:stardom/pages/user/auth/login.dart';
 import 'package:stardom/pages/user/home/userHomePage/user_home.dart';
 
+
+var fullName=TextEditingController(text: "");
+var email=TextEditingController(text: "");
+var phone=TextEditingController(text: "");
+var password=TextEditingController(text: "");
 
 class userSignup extends StatefulWidget {
 
@@ -30,17 +34,16 @@ class _userSignupState extends State<userSignup> {
                       const Color.fromRGBO(137, 12, 235, 1),
                       const Color.fromRGBO(43, 12, 235, 0.85),
                     ])),
-            height: height,
             child: Container(
-              height: height,
               margin: EdgeInsets.all(width*0.1),
               child: Center(
                 child: Column(
                   children: [
                     Container(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
+                      child: ListView(
+                        shrinkWrap: true,
+                        // crossAxisAlignment: CrossAxisAlignment.start,
+                        // mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Container(
                             width: width,
@@ -96,6 +99,45 @@ class _userSignupState extends State<userSignup> {
                       width: width,
                       margin: EdgeInsets.only(top: 100),
                       child: TextField(
+                        controller: fullName,
+                        style: TextStyle(fontSize: 15, color: Colors.black.withOpacity(0.8),fontWeight: FontWeight.w400,fontFamily: "Ubuntu"),
+                        decoration: InputDecoration(
+                          hintText: "Full Name",
+                          contentPadding: EdgeInsets.all(15),
+                          filled: true,
+                          focusColor: Colors.red,
+                          fillColor: Colors.white.withOpacity(0.7),
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      width: width,
+                      margin: EdgeInsets.only(top: 20),
+                      child: TextField(
+                        controller: email,
+                        style: TextStyle(fontSize: 15, color: Colors.black.withOpacity(0.8),fontWeight: FontWeight.w400,fontFamily: "Ubuntu"),
+                        decoration: InputDecoration(
+                          hintText: "Email",
+                          contentPadding: EdgeInsets.all(15),
+                          filled: true,
+                          focusColor: Colors.red,
+                          fillColor: Colors.white.withOpacity(0.7),
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      width: width,
+                      margin: EdgeInsets.only(top: 20),
+                      child: TextField(
+                        controller: phone,
                         style: TextStyle(fontSize: 15, color: Colors.black.withOpacity(0.8),fontWeight: FontWeight.w400,fontFamily: "Ubuntu"),
                         decoration: InputDecoration(
                           hintText: "Phone",
@@ -114,6 +156,7 @@ class _userSignupState extends State<userSignup> {
                       width: width,
                       margin: EdgeInsets.only(top: 20),
                       child: TextField(
+                        controller: password,
                         style: TextStyle(fontSize: 15, color: Colors.black.withOpacity(0.8),fontWeight: FontWeight.w400,fontFamily: "Ubuntu"),
                         decoration: InputDecoration(
                           suffixIcon: TextButton(

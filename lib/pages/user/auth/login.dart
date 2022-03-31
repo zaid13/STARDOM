@@ -6,6 +6,9 @@ import 'package:stardom/pages/celeb/auth/celebLogin.dart';
 import 'package:stardom/pages/user/auth/signup.dart';
 import 'package:stardom/pages/user/home/userHomePage/user_home.dart';
 
+var fullName=TextEditingController(text: "");
+var password=TextEditingController(text: "");
+
 
 class userLogin extends StatefulWidget {
 
@@ -97,6 +100,7 @@ class _userLoginState extends State<userLogin> {
                       width: width,
                       margin: EdgeInsets.only(top: 100),
                       child: TextField(
+                        controller: phone,
                         style: TextStyle(fontSize: 15, color: Colors.black.withOpacity(0.8),fontWeight: FontWeight.w400,fontFamily: "Ubuntu"),
                         decoration: InputDecoration(
                           hintText: "Phone",
@@ -115,6 +119,7 @@ class _userLoginState extends State<userLogin> {
                       width: width,
                       margin: EdgeInsets.only(top: 20),
                       child: TextField(
+                        controller: password,
                         style: TextStyle(fontSize: 15, color: Colors.black.withOpacity(0.8),fontWeight: FontWeight.w400,fontFamily: "Ubuntu"),
                         decoration: InputDecoration(
                           suffixIcon: TextButton(

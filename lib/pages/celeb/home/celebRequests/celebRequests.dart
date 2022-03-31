@@ -1,6 +1,7 @@
 
 import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
+import 'package:stardom/pages/celeb/home/celebRequests/celebVideoRequestDetails.dart';
 import 'package:stardom/pages/user/home/frontPage/components/celebrityProfilePage/celebrityProfilePage.dart';
 import 'package:stardom/pages/user/home/videoRequestPage/videoRequestDetails.dart';
 import 'package:stardom/util/colorScheme.dart';
@@ -55,7 +56,7 @@ class _celebRequestsState extends State<celebRequests> {
                           return GestureDetector(
                             onTap: (){
                               Navigator.push(context, CupertinoPageRoute(builder: (context){
-                                return videoRequestDetails();
+                                return celebVideoRequestDetails();
                               }));
                             },
                             child: Container(
