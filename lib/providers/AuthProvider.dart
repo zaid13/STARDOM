@@ -25,8 +25,10 @@ status for your UI or widgets to listen.
   class AuthProvider extends ChangeNotifier {
   //Firebase Auth object
   late FirebaseAuth _auth;
+  late UserModel currentUser;
   CollectionReference users = FirebaseFirestore.instance.collection('users');
 
+  var _verificationId;
 
   //Default status
   Status _status = Status.Uninitialized;
@@ -46,7 +48,7 @@ status for your UI or widgets to listen.
   //Create user object based on the given User
   UserModel _userFromFirebase(User? user) {
     if (user == null) {
-      return UserModel(user_name: 'Null', uid: 'null', picture_url: "", email_address: '', phone_number: '', password: '');
+      return UserModel(user_name: 'Null', uid: 'null', picture_url: "", email_address: '', phone_number: '', );
     }
 
     return UserModel(
@@ -54,8 +56,7 @@ status for your UI or widgets to listen.
         email_address: user.email??"",
         picture_url: user.photoURL??"",
         phone_number:  user.phoneNumber??"",
-        user_name: user.displayName??"",
-        password: '');
+        user_name: user.displayName??"",);
   }
 
   //Method to detect live auth changes such as user sign in and sign out
@@ -84,7 +85,7 @@ status for your UI or widgets to listen.
       print("Error on the new user registration = " + e.toString());
       _status = Status.Unauthenticated;
       notifyListeners();
-      return UserModel( uid: 'null', email_address: '', password: '', user_name: 'Null', phone_number: '', picture_url: '');
+      return UserModel( uid: 'null', email_address: '', user_name: 'Null', phone_number: '', picture_url: '');
     }
   }
   //Method for new user registration using phone and password
@@ -126,18 +127,46 @@ status for your UI or widgets to listen.
       return false;
     }
   }
-   loginUser(String phone, BuildContext context, logger) async{
+  signUp(_smsController ,Function routeToHomeScreen) async {
+    if(_verificationId==null){
+      print("verifcation id is null");
+    }
+    else{
+      final AuthCredential credential = PhoneAuthProvider.credential(
+        verificationId: _verificationId,
+        smsCode: _smsController,
+      );
 
-var _verificationId;
+      final User? user = (await _auth.signInWithCredential(credential)).user;
+      currentUser.uid = user!.uid;
+     if (! await ifUserExists(currentUser.uid)){
+       await users.add((currentUser).toJson());
+       print("Successfully register in UID: ${user!.uid}");
+
+     }
+     else{
+       print("Successfully signed in UID: ${user!.uid}");
+
+     }
+      routeToHomeScreen();
+
+
+
+    }
+    }
+
+
+   registerUserWithPhoneNumnber(UserModel user, BuildContext context, logger,routeToOtpScreen) async{
+
     FirebaseAuth _auth = FirebaseAuth.instance;
 
     try {
       await _auth.verifyPhoneNumber(
-          phoneNumber: phone,
-          timeout: const Duration(seconds: 5),
+          phoneNumber: user.phone_number,
+          timeout: const Duration(seconds: 40),
           verificationCompleted:  (PhoneAuthCredential phoneAuthCredential) async {
-            await _auth.signInWithCredential(phoneAuthCredential);
-            logger("Phone number automatically verified and user signed in: ${_auth.currentUser!.uid}");
+            // await _auth.signInWithCredential(phoneAuthCredential);
+            // logger("Phone number automatically verified and user signed in: ${_auth.currentUser!.uid}");
           },
           verificationFailed:     (FirebaseAuthException authException) {
 
@@ -145,9 +174,14 @@ var _verificationId;
             print('Phone number verification failed. Code: ${authException.code}. Message: ${authException.message}');
           },
           codeSent:  (String verificationId,  int? forceResendingToken) async {
-            logger('Please check your phone for the verification code.');
-            _verificationId = verificationId;
 
+            _status = Status.Registering;
+            notifyListeners();
+
+            logger('Please check your phone for the verification code.');
+            currentUser = user;
+            _verificationId = verificationId;
+            routeToOtpScreen();
             try {
               // final AuthCredential credential = PhoneAuthProvider.credential(
               //   verificationId: _verificationId,
@@ -163,7 +197,7 @@ var _verificationId;
 
           },
           codeAutoRetrievalTimeout:  (String verificationId) {
-            logger("verification code: " + verificationId);
+            // logger("verification code: " + verificationId);
             _verificationId = verificationId;
           });
     } catch (e) {
@@ -186,5 +220,15 @@ var _verificationId;
     _status = Status.Unauthenticated;
     notifyListeners();
     return Future.delayed(Duration.zero);
+  }
+
+  Future<bool> ifUserExists(String uid) async {
+  QuerySnapshot snapshot =  await users.where("uid",isEqualTo: uid).get();
+  if(snapshot.docs.length>0){
+    return true;
+  }
+  return false;
+
+
   }
 }

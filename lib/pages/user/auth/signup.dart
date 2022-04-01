@@ -5,8 +5,10 @@ import 'package:stardom/pages/user/auth/login.dart';
 import 'package:stardom/pages/user/auth/otpScreen.dart';
 import 'package:stardom/pages/user/home/userHomePage/user_home.dart';
 
+import '../../../models/UserModel.dart';
 import '../../../providers/AuthProvider.dart';
 import '../../../util/snackBar.dart';
+import 'package:provider/provider.dart';
 
 
 var fullName=TextEditingController(text: "");
@@ -194,12 +196,52 @@ class _userSignupState extends State<userSignup> {
                         child: ElevatedButton(
                             onPressed: (){
 
-//                               Navigator.pushReplacement(
-//                                   context,
-//                                   CupertinoPageRoute(builder: (context){
-//                                     return otpScreen();
-//                                   })
-//                               );
+
+                              UserModel user = UserModel(
+
+                                  uid : "",
+                                  picture_url:"",
+                                  phone_number:phone.value.text,
+                                  email_address:email.value.text,
+                                  user_name:fullName.value.text,
+                              );
+
+                              print('frf');
+                              context.read<AuthProvider>().registerUserWithPhoneNumnber(user, context, (log){
+                                print(log);
+
+                                showDialog(
+                                  context: context,
+                                  builder: (context) => AlertDialog(
+                                    title: new Text('Message'),
+                                    content: Text(log),
+                                    actions: <Widget>[
+                                      FlatButton(
+                                        onPressed: () {
+                                          Navigator.of(context, rootNavigator: true)
+                                              .pop(); // dismisses only the dialog and returns nothing
+                                        },
+                                        child: Text('OK'),
+                                      ),
+                                    ],
+                                  ),
+                                );
+
+
+
+                                },
+                                      (){
+                                    Navigator.pushReplacement(
+                                        context,
+                                        CupertinoPageRoute(builder: (context){
+                                          return otpScreen();
+                                        })
+                                    );
+                                  }
+                              );
+
+
+
 
                               // Navigator.pushReplacement(
                               //     context,
@@ -207,7 +249,6 @@ class _userSignupState extends State<userSignup> {
                               //       return userHome();
                               //     })
                               // );
-                      //        AuthProvider().loginUser("+923174149260", context, (log){showSnackbar(log,_scaffoldKey);
                       //         });
 
 

@@ -6,6 +6,11 @@ import 'package:stardom/pages/celeb/auth/celebLogin.dart';
 import 'package:stardom/pages/user/auth/signup.dart';
 import 'package:stardom/pages/user/home/userHomePage/user_home.dart';
 
+import '../../../models/UserModel.dart';
+import '../../../providers/AuthProvider.dart';
+import 'otpScreen.dart';
+import 'package:provider/provider.dart';
+
 var fullName=TextEditingController(text: "");
 var password=TextEditingController(text: "");
 
@@ -145,12 +150,51 @@ class _userLoginState extends State<userLogin> {
                       child: Center(
                         child: ElevatedButton(
                             onPressed: (){
-                              Navigator.pushReplacement(
-                                  context,
-                                  CupertinoPageRoute(builder: (context){
-                                    return userHome();
-                                  })
+
+
+                              UserModel user = UserModel(
+
+                                uid : "",
+                                picture_url:"",
+                                phone_number:phone.value.text,
+                                email_address:email.value.text,
+                                user_name:fullName.value.text,
                               );
+
+                              print('frf');
+                              context.read<AuthProvider>().registerUserWithPhoneNumnber(user, context, (log){
+                                print(log);
+
+                                showDialog(
+                                  context: context,
+                                  builder: (context) => AlertDialog(
+                                    title: new Text('Message'),
+                                    content: Text(log),
+                                    actions: <Widget>[
+                                      FlatButton(
+                                        onPressed: () {
+                                          Navigator.of(context, rootNavigator: true)
+                                              .pop(); // dismisses only the dialog and returns nothing
+                                        },
+                                        child: Text('OK'),
+                                      ),
+                                    ],
+                                  ),
+                                );
+
+
+
+                              },
+                                      (){
+                                    Navigator.pushReplacement(
+                                        context,
+                                        CupertinoPageRoute(builder: (context){
+                                          return otpScreen();
+                                        })
+                                    );
+                                  }
+                              );
+
                             },
                             style: ElevatedButton.styleFrom(
                               elevation: 10,
@@ -173,6 +217,9 @@ class _userLoginState extends State<userLogin> {
                           ),
                         ),
                         onPressed: (){
+
+
+
                           Navigator.pushReplacement(
                               context,
                               CupertinoPageRoute(builder: (context){

@@ -13,7 +13,7 @@ class UserModel{
       required this.picture_url,
       required this.phone_number,
       required this.email_address,
-      required this.password,
+      // required this.password,
       required this.user_name
 
 
@@ -22,7 +22,7 @@ class UserModel{
   String picture_url;
   String phone_number;
   String email_address;
-  String password;
+  // String password;
   String uid;
   String user_name;
 
