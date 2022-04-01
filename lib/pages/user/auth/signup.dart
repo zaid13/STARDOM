@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:stardom/pages/celeb/auth/celebLogin.dart';
 import 'package:stardom/pages/user/auth/login.dart';
+import 'package:stardom/pages/user/auth/otpScreen.dart';
 import 'package:stardom/pages/user/home/userHomePage/user_home.dart';
 
 import '../../../providers/AuthProvider.dart';
@@ -192,14 +193,23 @@ class _userSignupState extends State<userSignup> {
                       child: Center(
                         child: ElevatedButton(
                             onPressed: (){
+
+//                               Navigator.pushReplacement(
+//                                   context,
+//                                   CupertinoPageRoute(builder: (context){
+//                                     return otpScreen();
+//                                   })
+//                               );
+
                               // Navigator.pushReplacement(
                               //     context,
                               //     CupertinoPageRoute(builder: (context){
                               //       return userHome();
                               //     })
                               // );
-                              AuthProvider().loginUser("+923174149260", context, (log){showSnackbar(log,_scaffoldKey);
+                      //        AuthProvider().loginUser("+923174149260", context, (log){showSnackbar(log,_scaffoldKey);
                               });
+
 
 
 
