@@ -149,14 +149,14 @@ var _verificationId;
             _verificationId = verificationId;
 
             try {
-              final AuthCredential credential = PhoneAuthProvider.credential(
-                verificationId: _verificationId,
-                smsCode: _smsController.text,
-              );
-
-              final User? user = (await _auth.signInWithCredential(credential)).user;
-
-              logger("Successfully signed in UID: ${user!.uid}");
+              // final AuthCredential credential = PhoneAuthProvider.credential(
+              //   verificationId: _verificationId,
+              //   smsCode: _smsController.text,
+              // );
+              //
+              // final User? user = (await _auth.signInWithCredential(credential)).user;
+              //
+              // logger("Successfully signed in UID: ${user!.uid}");
             } catch (e) {
               logger("Failed to sign in: " + e.toString());
             }
