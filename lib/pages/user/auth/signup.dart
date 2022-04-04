@@ -207,7 +207,7 @@ class _userSignupState extends State<userSignup> {
                               );
 
                               print('frf');
-                              context.read<AuthProvider>().registerUserWithPhoneNumnber(user, context, (log){
+                              context.read<AuthProvider>().registerWithGoogle(user :user,log: (log){
                                 print(log);
 
                                 showDialog(
@@ -229,12 +229,12 @@ class _userSignupState extends State<userSignup> {
 
 
 
-                                },
+                                },moveNextScreen:
                                       (){
                                     Navigator.pushReplacement(
                                         context,
                                         CupertinoPageRoute(builder: (context){
-                                          return otpScreen();
+                                          return userHome();
                                         })
                                     );
                                   }

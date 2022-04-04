@@ -1,6 +1,9 @@
+import 'package:provider/provider.dart';
 import 'package:stardom/util/colorScheme.dart';
 import 'package:stardom/util/textStyles.dart';
 import "package:flutter/material.dart";
+
+import '../../../../providers/AuthProvider.dart';
 
 var testingData = [
   1,
@@ -196,10 +199,41 @@ class _profilePageState extends State<profilePage> {
                                 ),
                               ),
                             ),
-
                             SizedBox(
-                              height: 150,
-                            )
+                              height: 30,
+                            ),
+
+                            GestureDetector(
+                              onTap: (){
+                                context.read<AuthProvider>().signOut();
+                              },
+                              child: Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Container(
+                                    decoration:BoxDecoration(
+                                    borderRadius:
+                                    BorderRadius.all(Radius.circular(10)),
+                                color: Colors.red
+                                  ),
+                                      margin: EdgeInsets.only(top: 10),
+                                      padding: EdgeInsets.all(10),
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            "Log Out",
+                                            style: sofiaStyle(
+                                                color: Colors.white,
+                                                fontSize: 18,
+                                                bold: true),
+                                          ),
+                                        ],
+                                      ))),
+                            ),
+
+
+
+
 
                           ],
                         )),
