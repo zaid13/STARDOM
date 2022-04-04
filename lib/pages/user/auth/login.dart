@@ -1,16 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_signin_button/button_list.dart';
+import 'package:flutter_signin_button/button_view.dart';
 import 'package:stardom/pages/celeb/auth/celebLogin.dart';
-import 'package:stardom/pages/user/auth/signup.dart';
 import 'package:stardom/pages/user/home/userHomePage/user_home.dart';
 
 import '../../../models/UserModel.dart';
 import '../../../providers/AuthProvider.dart';
-import 'otpScreen.dart';
 import 'package:provider/provider.dart';
 
-var fullName = TextEditingController(text: "");
-var password = TextEditingController(text: "");
 
 class userLogin extends StatefulWidget {
   @override
@@ -103,157 +101,54 @@ class _userLoginState extends State<userLogin> {
                       ),
                     ),
                     Container(
-                      width: width,
-                      margin: EdgeInsets.only(top: 100),
-                      child: TextField(
-                        controller: phone,
-                        style: TextStyle(
-                            fontSize: 15,
-                            color: Colors.black.withOpacity(0.8),
-                            fontWeight: FontWeight.w400,
-                            fontFamily: "Ubuntu"),
-                        decoration: InputDecoration(
-                          hintText: "Phone",
-                          contentPadding: EdgeInsets.all(15),
-                          filled: true,
-                          focusColor: Colors.red,
-                          fillColor: Colors.white.withOpacity(0.7),
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.circular(15),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Container(
-                      width: width,
-                      margin: EdgeInsets.only(top: 20),
-                      child: TextField(
-                        controller: password,
-                        style: TextStyle(
-                            fontSize: 15,
-                            color: Colors.black.withOpacity(0.8),
-                            fontWeight: FontWeight.w400,
-                            fontFamily: "Ubuntu"),
-                        decoration: InputDecoration(
-                          suffixIcon: TextButton(
-                            onPressed: () {
-                              print("pressed");
-                            },
-                            child: Icon(
-                              Icons.remove_red_eye,
-                              color: Colors.black.withOpacity(0.8),
-                            ),
-                          ),
-                          hintText: "Password",
-                          contentPadding: EdgeInsets.all(15),
-                          filled: true,
-                          focusColor: Colors.red,
-                          fillColor: Colors.white.withOpacity(0.7),
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.circular(15),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(top: 40),
-                      child: Center(
-                        child: ElevatedButton(
-                            onPressed: () {
-                              UserModel user = UserModel(
-                                uid: "",
-                                picture_url: "",
-                                phone_number: phone.value.text,
-                                email_address: email.value.text,
-                                user_name: fullName.value.text,
-                              );
+                      margin: EdgeInsets.only(top:100),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: SignInButton(
+                          Buttons.Google,
+                          elevation: 10,
+                          onPressed: () {
+                            UserModel user = UserModel(
+                              uid: "",
+                              picture_url: "",
+                              phone_number: "",
+                              email_address: "",
+                              user_name: "",
+                            );
 
-                              print('frf');
-                              context.read<AuthProvider>().signInWithGoogle(
-                                  user: user,
-                                  log: (log) {
-                                    print(log);
+                            print('frf');
 
-                                    showDialog(
-                                      context: context,
-                                      builder: (context) => AlertDialog(
-                                        title: new Text('Message'),
-                                        content: Text(log),
-                                        actions: <Widget>[
-                                          FlatButton(
-                                            onPressed: () {
-                                              Navigator.of(context,
-                                                      rootNavigator: true)
-                                                  .pop(); // dismisses only the dialog and returns nothing
-                                            },
-                                            child: Text('OK'),
-                                          ),
-                                        ],
-                                      ),
-                                    );
-                                  },
-                                  moveNextScreen: () {
-                                    Navigator.pushReplacement(context,
-                                        CupertinoPageRoute(builder: (context) {
-                                      return userHome();
-                                    }));
-                                  });
-                            },
-                            style: ElevatedButton.styleFrom(
-                              elevation: 10,
-                              primary: Color.fromRGBO(49, 137, 255, 1),
-                              shape: const BeveledRectangleBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(5))),
-                            ),
-                            child: Center(
-                              child: Text(
-                                "Log In",
-                                style: TextStyle(
-                                    fontFamily: "Sofia Pro",
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 18),
-                              ),
-                            )),
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(top: 40),
-                      width: width,
-                      child: TextButton(
-                        style: ButtonStyle(
-                          padding: MaterialStateProperty.all(EdgeInsets.all(0)),
+                            context.read<AuthProvider>().signInWithGoogle(
+                                user: user,
+                                log: (log) {
+                                  print(log);
+
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) => AlertDialog(
+                                      title: new Text('Message'),
+                                      content: Text(log),
+                                      actions: <Widget>[
+                                        FlatButton(
+                                          onPressed: () {
+                                            Navigator.of(context,
+                                                rootNavigator: true)
+                                                .pop(); // dismisses only the dialog and returns nothing
+                                          },
+                                          child: Text('OK'),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                },
+                                moveNextScreen: () {
+                                  Navigator.pushReplacement(context,
+                                      CupertinoPageRoute(builder: (context) {
+                                        return userHome();
+                                      }));
+                                });
+                          },
                         ),
-                        onPressed: () {
-                          Navigator.pushReplacement(context,
-                              CupertinoPageRoute(builder: (context) {
-                            return userSignup();
-                          }));
-                        },
-                        child: Text(
-                          "Haven't signed up yet ? Signup Here.",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontFamily: "Sofia Pro",
-                              fontSize: 15,
-                              fontWeight: FontWeight.w400),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(top: 10),
-                      width: width,
-                      child: Text(
-                        "Forgot password.",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontFamily: "Sofia Pro",
-                            fontSize: 15,
-                            fontWeight: FontWeight.w800),
-                        textAlign: TextAlign.center,
                       ),
                     ),
                   ],
