@@ -75,51 +75,51 @@ status for your UI or widgets to listen.
   }
 
     //Method for new user registration using Google
-  Future<UserModel> registerWithGoogle(
-      {required UserModel user,required  Function log,required  Function moveNextScreen}) async {
-      try {
-        _status = Status.Registering;
-        notifyListeners();
-
-
-
-        GoogleSignInAccount? googleSignInAccount = await _googleSignIn.signIn();
-        GoogleSignInAuthentication googleSignInAuthentication =
-        await googleSignInAccount!.authentication;
-
-        AuthCredential credential = GoogleAuthProvider.credential(
-          accessToken: googleSignInAuthentication.accessToken,
-          idToken: googleSignInAuthentication.idToken,
-        );
-        UserCredential userCred = await _auth.signInWithCredential(credential);
-        User? _user = userCred.user;
-        assert(!_user!.isAnonymous);
-        assert(await _user!.getIdToken() != null);
-        User? currentUser = await _auth.currentUser;
-        assert(_user!.uid == currentUser!.uid);
-
-
-        print("User Name: ${_user!.displayName}");
-        print("User Email ${_user.email}");
-        if(! await ifUserExists(_user.uid)){
-          await users.add(_userFromFirebase(_user).toJson());
-        }
-        else{
-          log("Already Registered");
-
-        }
-
-        moveNextScreen();
-
-        return _userFromFirebase(_user);
-      } catch (e) {
-        log("Error on the new user registration = " + e.toString());
-        _status = Status.Unauthenticated;
-        notifyListeners();
-        return UserModel( uid: 'null', email_address: '', user_name: 'Null', phone_number: '', picture_url: '');
-      }
-    }
-
+  // Future<UserModel> registerWithGoogle(
+  //     {required UserModel user,required  Function log,required  Function moveNextScreen}) async {
+  //     try {
+  //       _status = Status.Registering;
+  //       notifyListeners();
+  //
+  //
+  //
+  //       GoogleSignInAccount? googleSignInAccount = await _googleSignIn.signIn();
+  //       GoogleSignInAuthentication googleSignInAuthentication =
+  //       await googleSignInAccount!.authentication;
+  //
+  //       AuthCredential credential = GoogleAuthProvider.credential(
+  //         accessToken: googleSignInAuthentication.accessToken,
+  //         idToken: googleSignInAuthentication.idToken,
+  //       );
+  //       UserCredential userCred = await _auth.signInWithCredential(credential);
+  //       User? _user = userCred.user;
+  //       assert(!_user!.isAnonymous);
+  //       assert(await _user!.getIdToken() != null);
+  //       User? currentUser = await _auth.currentUser;
+  //       assert(_user!.uid == currentUser!.uid);
+  //
+  //
+  //       print("User Name: ${_user!.displayName}");
+  //       print("User Email ${_user.email}");
+  //       if(! await ifUserExists(_user.uid)){
+  //         await users.add(_userFromFirebase(_user).toJson());
+  //       }
+  //       else{
+  //         log("Already Registered");
+  //
+  //       }
+  //
+  //       moveNextScreen();
+  //
+  //       return _userFromFirebase(_user);
+  //     } catch (e) {
+  //       log("Error on the new user registration = " + e.toString());
+  //       _status = Status.Unauthenticated;
+  //       notifyListeners();
+  //       return UserModel( uid: 'null', email_address: '', user_name: 'Null', phone_number: '', picture_url: '');
+  //     }
+  //   }
+  //
 
     Future<UserModel> signInWithGoogle(
         {required UserModel user,required  Function log,required  Function moveNextScreen}) async {
@@ -148,16 +148,16 @@ status for your UI or widgets to listen.
         print("User Name: ${_user!.displayName}");
         print("User Email ${_user.email}");
 
-        if( await ifUserExists(_user.uid)){
-          await users.add(_userFromFirebase(_user).toJson());
-          moveNextScreen();
-        }
-        else{
-          log("Please Sign Up");
+        // if( await ifUserExists(_user.uid)){
+        //   await users.add(_userFromFirebase(_user).toJson());
+        //   moveNextScreen();
+        // }
+        // else{
+        //   log("Please Sign Up");
+        //
+        // }
 
-        }
-
-
+        moveNextScreen();
 
 
         return _userFromFirebase(_user);

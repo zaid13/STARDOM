@@ -1,9 +1,13 @@
 import 'package:provider/provider.dart';
+import 'package:stardom/models/UserModel.dart';
 import 'package:stardom/util/colorScheme.dart';
 import 'package:stardom/util/textStyles.dart';
 import "package:flutter/material.dart";
-
+import "package:provider/provider.dart";
 import '../../../../providers/AuthProvider.dart';
+
+UserModel currentUser =
+    UserModel(email_address: "", phone_number: "", picture_url: "", uid: "",user_name: "");
 
 var testingData = [
   1,
@@ -20,6 +24,20 @@ class profilePage extends StatefulWidget {
 }
 
 class _profilePageState extends State<profilePage> {
+  @override
+  void initState() {
+    fetch() async {
+      UserModel user = await context.read<AuthProvider>().user.first;
+      setState(() {
+        currentUser=user;
+      });
+    }
+
+    fetch();
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
@@ -78,17 +96,23 @@ class _profilePageState extends State<profilePage> {
                                 child: Container(
                                     padding: EdgeInsets.only(top: 15),
                                     child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
                                       children: [
                                         Text(
-                                          "Hamza Hassan",
+                                          "${currentUser.user_name}",
                                           style: sofiaStyle(
                                               color: Colors.white,
                                               fontSize: 35,
                                               bold: true),
                                         ),
-                                        SizedBox(width: 10,),
-                                        Icon(Icons.edit,color: Colors.white,)
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        Icon(
+                                          Icons.edit,
+                                          color: Colors.white,
+                                        )
                                       ],
                                     ))),
                             Align(
@@ -97,7 +121,8 @@ class _profilePageState extends State<profilePage> {
                                     margin: EdgeInsets.only(top: 20),
                                     padding: EdgeInsets.all(10),
                                     child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
                                       children: [
                                         Text(
                                           "Email",
@@ -111,9 +136,13 @@ class _profilePageState extends State<profilePage> {
                             Container(
                               width: width,
                               child: TextField(
-                                style: TextStyle(fontSize: 15, color: Colors.black.withOpacity(0.8),fontWeight: FontWeight.w400,fontFamily: "Ubuntu"),
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    color: Colors.black.withOpacity(0.8),
+                                    fontWeight: FontWeight.w400,
+                                    fontFamily: "Ubuntu"),
                                 decoration: InputDecoration(
-                                  hintText: "hassanhamza930@gmail.com",
+                                  hintText: "${currentUser.email_address}",
                                   contentPadding: EdgeInsets.all(15),
                                   filled: true,
                                   focusColor: Colors.red,
@@ -131,7 +160,8 @@ class _profilePageState extends State<profilePage> {
                                     margin: EdgeInsets.only(top: 10),
                                     padding: EdgeInsets.all(10),
                                     child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
                                       children: [
                                         Text(
                                           "Phone",
@@ -145,9 +175,13 @@ class _profilePageState extends State<profilePage> {
                             Container(
                               width: width,
                               child: TextField(
-                                style: TextStyle(fontSize: 15, color: Colors.black.withOpacity(0.8),fontWeight: FontWeight.w400,fontFamily: "Ubuntu"),
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    color: Colors.black.withOpacity(0.8),
+                                    fontWeight: FontWeight.w400,
+                                    fontFamily: "Ubuntu"),
                                 decoration: InputDecoration(
-                                  hintText: "+923174631189",
+                                  hintText: "${currentUser.phone_number}",
                                   contentPadding: EdgeInsets.all(15),
                                   filled: true,
                                   focusColor: Colors.red,
@@ -165,7 +199,8 @@ class _profilePageState extends State<profilePage> {
                                     margin: EdgeInsets.only(top: 10),
                                     padding: EdgeInsets.all(10),
                                     child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
                                       children: [
                                         Text(
                                           "Password",
@@ -179,13 +214,20 @@ class _profilePageState extends State<profilePage> {
                             Container(
                               width: width,
                               child: TextField(
-                                style: TextStyle(fontSize: 15, color: Colors.black.withOpacity(0.8),fontWeight: FontWeight.w400,fontFamily: "Ubuntu"),
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    color: Colors.black.withOpacity(0.8),
+                                    fontWeight: FontWeight.w400,
+                                    fontFamily: "Ubuntu"),
                                 decoration: InputDecoration(
                                   suffixIcon: TextButton(
-                                    onPressed: (){
+                                    onPressed: () {
                                       print("pressed");
                                     },
-                                    child: Icon(Icons.remove_red_eye,color: Colors.black.withOpacity(0.8),),
+                                    child: Icon(
+                                      Icons.remove_red_eye,
+                                      color: Colors.black.withOpacity(0.8),
+                                    ),
                                   ),
                                   hintText: "testing123",
                                   contentPadding: EdgeInsets.all(15),
@@ -202,23 +244,22 @@ class _profilePageState extends State<profilePage> {
                             SizedBox(
                               height: 30,
                             ),
-
                             GestureDetector(
-                              onTap: (){
+                              onTap: () {
                                 context.read<AuthProvider>().signOut();
                               },
                               child: Align(
                                   alignment: Alignment.centerLeft,
                                   child: Container(
-                                    decoration:BoxDecoration(
-                                    borderRadius:
-                                    BorderRadius.all(Radius.circular(10)),
-                                color: Colors.red
-                                  ),
+                                      decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(10)),
+                                          color: Colors.red),
                                       margin: EdgeInsets.only(top: 10),
                                       padding: EdgeInsets.all(10),
                                       child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
                                         children: [
                                           Text(
                                             "Log Out",
@@ -230,11 +271,6 @@ class _profilePageState extends State<profilePage> {
                                         ],
                                       ))),
                             ),
-
-
-
-
-
                           ],
                         )),
                   )
