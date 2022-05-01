@@ -114,14 +114,14 @@ status for your UI or widgets to listen.
         print("User Name: ${_user!.displayName}");
         print("User Email ${_user.email}");
 
-        // if( await ifUserExists(_user.uid)){
-        //   await users.add(_userFromFirebase(_user).toJson());
-        //   moveNextScreen();
-        // }
-        // else{
-        //   log("Please Sign Up");
-        //
-        // }
+        if(! await ifUserExists(_user.uid)){
+          await users.add(_userFromFirebase(_user).toJson());
+          moveNextScreen();
+        }
+        else{
+          log("Please Sign Up");
+
+        }
 
         moveNextScreen();
 

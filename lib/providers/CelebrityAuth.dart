@@ -130,14 +130,14 @@ class CelebrityAuthProvider extends ChangeNotifier {
       print("User Name: ${_user!.displayName}");
       print("User Email ${_user.email}");
 
-      // if( await ifUserExists(_user.uid)){
-      //   await celebrityUsers.add(_userFromFirebase(_user).toJson());
-      //   moveNextScreen();
-      // }
-      // else{
-      //   log("Please Sign Up");
-      //
-      // }
+      if(! await ifUserExists(_user.uid)){
+        await celebrityUsers.add(_userFromFirebase(_user).toJson());
+        moveNextScreen();
+      }
+      else{
+        log("Please Sign Up");
+
+      }
 
       moveNextScreen();
 
