@@ -88,8 +88,8 @@ class _profilePageState extends State<profilePage> {
                                       borderRadius: BorderRadius.all(Radius.circular(10)),
                                       image: DecorationImage(
                                           image: NetworkImage(imgUrl) as ImageProvider, fit: BoxFit.cover)),
-                                  width: width * 0.5,
-                                  height: 200,
+                                  width: 100,
+                                  height: 100,
                                 ),
                               ),
                             ],

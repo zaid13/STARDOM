@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:stardom/pages/user/home/frontPage/components/celebrityCard.dart';
 import 'package:stardom/pages/user/home/frontPage/components/searchPage/components/searchPageRow.dart';
 import 'package:stardom/util/colorScheme.dart';
@@ -57,30 +58,44 @@ class _searchPageState extends State<searchPage> {
                     ),
                   ),
                 ),
-                Expanded(
-                  child: ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: testingData.length+1,
-                      itemBuilder: (context,index){
-                        if(index==testingData.length){
-                          return SizedBox(
-                            height: 100,
-                          );
-                        }
-                        else{
-                          return Container(
-                              margin: EdgeInsets.only(bottom: 20),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  searchPageRow(),
-                                  searchPageRow(),
-                                ],
-                              )
-                          );
-                        }
-                      }
-                  ),
+                StreamBuilder<QuerySnapshot>(
+                  stream: FirebaseFirestore.instance.collection("celebrityUsers").snapshots(),
+                  builder: (context, snapshot) {
+                    if(snapshot.hasData){
+                      QuerySnapshot<Object?>? data=snapshot.data;
+                      var docs= data?.docs;
+                      print(docs);
+                      
+                      return Expanded(
+                        child: ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: testingData.length+1,
+                            itemBuilder: (context,index){
+                              if(index==testingData.length){
+                                return SizedBox(
+                                  height: 100,
+                                );
+                              }
+                              else{
+                                return Container(
+                                    margin: EdgeInsets.only(bottom: 20),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        searchPageRow(),
+                                        searchPageRow(),
+                                      ],
+                                    )
+                                );
+                              }
+                            }
+                        ),
+                      );
+                    }
+                    else{
+                      return Container();
+                    }
+                  }
                 ),
               ],
             ),
