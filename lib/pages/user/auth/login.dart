@@ -114,6 +114,7 @@ class _userLoginState extends State<userLogin> {
                               phone_number: "",
                               email_address: "",
                               user_name: "",
+                              balance: 0
                             );
 
                             print('frf');

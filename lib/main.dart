@@ -7,6 +7,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:stardom/providers/AuthProvider.dart';
+import 'package:stardom/providers/CelebrityAuth.dart';
 
 
 void main() async {
@@ -18,6 +19,8 @@ void main() async {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => AuthProvider()),
+        ChangeNotifierProvider(create: (_) => CelebrityAuthProvider()),
+
 
       ],
       child:  MyApp(),

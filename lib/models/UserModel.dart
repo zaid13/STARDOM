@@ -14,7 +14,8 @@ class UserModel{
       required this.phone_number,
       required this.email_address,
       // required this.password,
-      required this.user_name
+      required this.user_name,
+      required this.balance
 
 
   });
@@ -25,6 +26,8 @@ class UserModel{
   // String password;
   String uid;
   String user_name;
+  double balance;
+
 
   factory UserModel.fromJson(Map<String, dynamic> json) => _$UserModelFromJson(json);
   Map<String, dynamic> toJson() => _$UserModelToJson(this);

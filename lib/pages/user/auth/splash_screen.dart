@@ -1,6 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
+import 'package:provider/provider.dart';
 import 'package:stardom/pages/user/auth/login.dart';
+
+import '../../../providers/AuthProvider.dart';
+import '../home/userHomePage/user_home.dart';
 
 class Splash extends StatefulWidget {
   const Splash({Key? key}) : super(key: key);
@@ -12,13 +16,28 @@ class Splash extends StatefulWidget {
 class _SplashState extends State<Splash> {
   @override
   void initState() {
-    Future.delayed(Duration(seconds: 3),(){
-      Navigator.push(
-          context,
-          CupertinoPageRoute(builder: (context){
-            return userLogin();
-          })
-      );
+
+
+    Future.delayed(Duration(seconds: 3),() async {
+      if( await context.read<AuthProvider>().isUserLoggedIn()){
+
+        await context.read<AuthProvider>().syncUser();
+        Navigator.pushReplacement(context,
+            CupertinoPageRoute(builder: (context) {
+              return userHome();
+            }));
+
+      }else{
+
+
+        Navigator.pushReplacement(
+            context,
+            CupertinoPageRoute(builder: (context){
+              return userLogin();
+            })
+        );
+
+      }
     });
     super.initState();
   }

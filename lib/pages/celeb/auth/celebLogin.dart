@@ -8,6 +8,9 @@ import 'package:stardom/models/UserModel.dart';
 import 'package:stardom/pages/celeb/home/celebHomePage/celebHomePage.dart';
 import 'package:stardom/pages/user/home/userHomePage/user_home.dart';
 import 'package:stardom/providers/AuthProvider.dart';
+import 'package:stardom/providers/CelebrityAuth.dart';
+
+import '../../../models/CelebrityModel.dart';
 
 
 
@@ -78,18 +81,18 @@ class _celebLoginState extends State<celebLogin> {
                           Buttons.Google,
                           elevation: 10,
                           onPressed: () {
-                            UserModel user = UserModel(
-                              uid: "",
-                              picture_url: "",
-                              phone_number: "",
-                              email_address: "",
-                              user_name: "",
+                            CelebrityModel Celebuser = CelebrityModel(user_name: 'Null', uid: 'null', picture_url: "", email_address: '', phone_number: '',balance: 0 ,
+                                category:[],
+                                messageCategoryCharges:0.0,
+                                videoCategoryCharges:0.0,
+                                isActive: !context.read<CelebrityAuthProvider>().celebrityShouldBeblockOnsignup
+
                             );
 
                             print('frf');
 
-                            context.read<AuthProvider>().signInWithGoogle(
-                                user: user,
+                            context.read<CelebrityAuthProvider>().signInWithGoogle(
+                                user: Celebuser,
                                 log: (log) {
                                   print(log);
 
@@ -114,7 +117,7 @@ class _celebLoginState extends State<celebLogin> {
                                 moveNextScreen: () {
                                   Navigator.pushReplacement(context,
                                       CupertinoPageRoute(builder: (context) {
-                                        return userHome();
+                                        return celebHomePage();
                                       }));
                                 });
                           },
